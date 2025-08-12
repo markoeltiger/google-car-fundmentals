@@ -21,6 +21,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.car.app.connection.CarConnection
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -37,6 +38,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,6 +49,7 @@ import androidx.compose.ui.unit.dp
 import com.example.places.data.PlacesRepository
 import com.example.places.data.model.Place
 import com.example.places.data.model.toIntent
+import com.example.places.ui.components.ProjectionState
 import com.example.places.ui.theme.PlacesTheme
 
 class MainActivity : ComponentActivity() {
@@ -54,6 +58,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
+            val carConnectionType by CarConnection(this).type.observeAsState(initial = -1)
+
             PlacesTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding->
                     Column(
@@ -62,6 +68,11 @@ class MainActivity : ComponentActivity() {
                         Text(
                             text = "Places",
                             style = MaterialTheme.typography.displayLarge,
+                            modifier = Modifier.padding(8.dp)
+                        )
+
+                        ProjectionState(
+                            carConnectionType = carConnectionType,
                             modifier = Modifier.padding(8.dp)
                         )
                         PlaceList(places = PlacesRepository().getPlaces())

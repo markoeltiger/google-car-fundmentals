@@ -26,7 +26,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.android.cars.places"
-        minSdk = 23
+        minSdk = 24
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -70,9 +70,10 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.runtime.livedata)
     implementation(libs.androidx.ui)
+    implementation(libs.androidx.car.app)
     implementation(libs.androidx.material3)
     implementation(project(":common:data"))
-
+    implementation(project(":common:car-app-service"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
