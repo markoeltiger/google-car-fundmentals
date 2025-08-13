@@ -40,6 +40,13 @@ val PLACES = listOf(
         40.689167,
         -74.044444
     ),
+    Place(
+        3,
+        "Pyramids of Giza",
+        "The Pyramids of Giza, a UNESCO World Heritage site, are a complex of ancient Egyptian royal tombs located on the Giza Plateau near Cairo.",
+        29.9773,
+        -31.1325
+    ),
 )
 
 class PlacesRepository {

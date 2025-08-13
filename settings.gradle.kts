@@ -32,3 +32,4 @@ rootProject.name = "Places"
 include(":app")
 include(":common:data")
 include(":common:car-app-service")
+include(":automotive")
